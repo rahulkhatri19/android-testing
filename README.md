@@ -62,3 +62,33 @@ distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
 License for the specific language governing permissions and limitations under
 the License.
+
+Resources
+-----
+_____
+
+ - Test Driven Development: To learn more about [Test Driven Development in Android, you can watch Test-Driven Development on Android with the Android Testing Support Library (Google I/O '17)](https://youtu.be/pK7W5npkhho?t=222) (note the Android Testing Support Library has been replaced by [AndroidX Test](https://developer.android.com/training/testing/set-up-project) which you'll learn about later).
+
+ - **Naming Convention**: Given/When/Then which is Similar to Arrange, Act, Assert (AAA).
+ subjectUnderTest_actionOrInput_resultState, here subject is what are we testing.
+
+```kt
+  @Test
+       fun getActiveAndCompleteStatus_zeroComplete_returnZeroHundred() {
+   //        Given total 1 task: 0 completed task and 1 active task
+           val task = listOf(Task("title", "description", false))
+   //        When you call getActiveAndCompletedStats
+           val result = getActiveAndCompletedStats(task)
+   //        Then there are 100% active task and 0% complete task
+           assertEquals(0f, result.completedTasksPercent)
+           assertEquals(100f, result.activeTasksPercent)
+       }
+```
+
+- Assertion Frameworks:
+  [Hamcrest](http://hamcrest.org/)
+  [Truth Library](https://truth.dev/)
+
+ - [Fundamentals of Testing](https://developer.android.com/training/testing/fundamentals)
+ - For more information go to [Developing Android Apps with Kotlin](https://classroom.udacity.com/courses/ud9012) Course's Lesson 5: App Architecture (UI Layer) - Concept 18. Exercise: Add End Game Event.
+
