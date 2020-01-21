@@ -90,5 +90,10 @@ _____
   [Truth Library](https://truth.dev/)
 
  - [Fundamentals of Testing](https://developer.android.com/training/testing/fundamentals)
- - For more information go to [Developing Android Apps with Kotlin](https://classroom.udacity.com/courses/ud9012) Course's Lesson 5: App Architecture (UI Layer) - Concept 18. Exercise: Add End Game Event.
+ - For more information go to [Developing Android Apps with Kotlin](https://classroom.udacity.com/courses/ud9012) Course's Lesson 5: App Architecture (UI Layer) - Concept 18. Exercise: Add End Game Event, Concept 22. Exercise: Add a ViewModelFactory
 
+ - [Dagger](https://dagger.dev)
+ - [Dagger 2 Codelab](https://codelabs.developers.google.com/codelabs/android-dagger/#0)
+ - [Dependency Injection Documentation](https://developer.android.com/training/dependency-injection)
+
+ - If you'd like to avoid building a separate factory for each view model, check out the [Architecture Blueprints reactive sample](https://github.com/android/architecture-samples/tree/reactive), which shows a slightly more complicated version of the tests you are building. It includes a generic [ViewModelFactory](https://github.com/googlesamples/android-architecture/blob/reactive/app/src/main/java/com/example/android/architecture/blueprints/todoapp/ViewModelFactory.kt) that can generate any view model needed and this [extension function](https://github.com/googlesamples/android-architecture/blob/reactive/app/src/main/java/com/example/android/architecture/blueprints/todoapp/util/FragmentExt.kt).

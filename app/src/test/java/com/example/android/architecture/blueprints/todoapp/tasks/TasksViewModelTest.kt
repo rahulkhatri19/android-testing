@@ -5,21 +5,38 @@ import androidx.lifecycle.Observer
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.android.architecture.blueprints.todoapp.Event
+import com.example.android.architecture.blueprints.todoapp.data.Task
+import com.example.android.architecture.blueprints.todoapp.data.source.FakeTestRepository
+import com.example.android.architecture.blueprints.todoapp.data.source.TasksRepository
 import com.example.android.architecture.blueprints.todoapp.getOrAwaitValue
-import org.hamcrest.CoreMatchers.not
-import org.hamcrest.CoreMatchers.nullValue
+import org.hamcrest.CoreMatchers.*
 import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
+//@RunWith(AndroidJUnit4::class)
 class TasksViewModelTest {
+
+    private lateinit var taskRepository: FakeTestRepository
+    private lateinit var tasksViewModel: TasksViewModel
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    @Test
+    @Before
+    fun setUpViewModle() {
+        taskRepository = FakeTestRepository()
+        val task1 = Task("Title1", "Destination1")
+        val task2 = Task("Title2", "Destination2", true)
+        val task3 = Task("Title2", "Destination3", true)
+        taskRepository.addTask(task1, task2, task3)
+
+        tasksViewModel = TasksViewModel(taskRepository)
+    }
+
+    /*@Test
     fun addNewTask_setsNewTaskEvent() {
         // Given a fresh TasksViewModel
         val tasksViewModel = TasksViewModel(ApplicationProvider.getApplicationContext())
@@ -43,12 +60,13 @@ class TasksViewModelTest {
         }
 
         // Then the new task event is triggered
-    }
+    }*/
 
     @Test
     fun addNewTask_setsNewTaskEvent_withLiveDataUtil() {
+
         // Given a fresh TasksViewModel
-        val tasksViewModel = TasksViewModel(ApplicationProvider.getApplicationContext())
+        val tasksViewModel = TasksViewModel(taskRepository)
 
         // When adding a new task
         tasksViewModel.addNewTask()
@@ -58,12 +76,17 @@ class TasksViewModelTest {
         assertThat(value.getContentIfNotHandled(), (not(nullValue())))
     }
 
-    @Test
+   /* @Test
     fun setFilterAllTasks_tasksAddViewVisible() {
+
         // Given a fresh ViewModel
+        val taskViewModel = TasksViewModel(ApplicationProvider.getApplicationContext())
+
 
         // When the filter type is ALL_TASKS
+        taskViewModel.setFiltering(TasksFilterType.ALL_TASKS)
 
         // Then the "Add task" action is visible
-    }
+        assertThat(taskViewModel.tasksAddViewVisible.getOrAwaitValue(), `is`(true))
+    }*/
 }
