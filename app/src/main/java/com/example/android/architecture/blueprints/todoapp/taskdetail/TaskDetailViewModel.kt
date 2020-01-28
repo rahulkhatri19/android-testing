@@ -30,11 +30,11 @@ import kotlinx.coroutines.launch
 /**
  * ViewModel for the Details screen.
  */
-class TaskDetailViewModelprivate (val tasksDetailRepository: TasksRepository) :ViewModel() {
+class TaskDetailViewModel(val tasksRepository: TasksRepository) : ViewModel() {
 
     // Note, for testing and architecture purposes, it's bad practice to construct the repository
     // here. We'll show you how to fix this during the codelab
-    private val tasksRepository = DefaultTasksRepository.getRepository(application)
+//    private val tasksRepository = DefaultTasksRepository.getRepository(application)
 
     private val _taskId = MutableLiveData<String>()
 
@@ -124,7 +124,7 @@ class TaskDetailViewModelprivate (val tasksDetailRepository: TasksRepository) :V
 //    }
 
     @Suppress("UNCHECKED_CAST")
-    class TaskDetailViewModelFactory(private val taskDetailRepository: TasksRepository) : ViewModelProvider.NewInstanceFactory(){
+    class TaskDetailViewModelFactory(private val taskDetailRepository: TasksRepository) : ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel> create(modelClass: Class<T>) = (TaskDetailViewModel(taskDetailRepository) as T)
     }
 }
